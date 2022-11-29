@@ -1,0 +1,161 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian (Russia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 343, 264
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Typing trainer"
+FONT 8, "Microsoft Sans Serif", 400, 0, 0xCC
+BEGIN
+    DEFPUSHBUTTON   "START",IDOK,26,223,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,217,222,50,14
+    PUSHBUTTON      "A",IDC_A_BUTTON,33,152,27,24
+    PUSHBUTTON      "B",IDC_B_BUTTON,171,182,27,24
+    PUSHBUTTON      "C",IDC_C_BUTTON,111,182,27,24
+    PUSHBUTTON      "D",IDC_D_BUTTON,93,152,27,24
+    PUSHBUTTON      "E",IDC_E_BUTTON,81,122,27,24
+    PUSHBUTTON      "F",IDC_F_BUTTON,123,152,27,24
+    PUSHBUTTON      "G",IDC_G_BUTTON,153,152,27,24
+    PUSHBUTTON      "H",IDC_H_BUTTON,183,152,27,24
+    PUSHBUTTON      "I",IDC_I_BUTTON,231,122,27,24
+    PUSHBUTTON      "J",IDC_J_BUTTON,213,152,27,24
+    PUSHBUTTON      "K",IDC_K_BUTTON,243,152,27,24
+    PUSHBUTTON      "L",IDC_L_BUTTON,273,152,27,24
+    PUSHBUTTON      "M",IDC_M_BUTTON,231,182,27,24
+    PUSHBUTTON      "N",IDC_N_BUTTON,201,182,27,24
+    PUSHBUTTON      "O",IDC_O_BUTTON,261,122,27,24
+    PUSHBUTTON      "P",IDC_P_BUTTON,291,122,27,24
+    PUSHBUTTON      "R",IDC_R_BUTTON,111,122,27,24
+    PUSHBUTTON      "S",IDC_S_BUTTON,63,152,27,24
+    PUSHBUTTON      "T",IDC_T_BUTTON,141,122,27,24
+    PUSHBUTTON      "Q",IDC_Q_BUTTON,21,122,27,24
+    PUSHBUTTON      "U",IDC_U_BUTTON,201,122,27,24
+    PUSHBUTTON      "V",IDC_V_BUTTON,141,182,27,24
+    PUSHBUTTON      "W",IDC_W_BUTTON,51,122,27,24
+    PUSHBUTTON      "X",IDC_X_BUTTON,81,182,27,24
+    PUSHBUTTON      "Y",IDC_Y_BUTTON,171,122,27,24
+    PUSHBUTTON      "Z",IDC_Z_BUTTON,51,182,27,24
+    PUSHBUTTON      "SPACE",IDC_SPACE_BUTTON,93,212,108,24
+    GROUPBOX        "Level",IDC_STATIC,9,31,52,51
+    CONTROL         "Light",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,43,31,10
+    CONTROL         "Medium",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,15,55,40,10
+    CONTROL         "Hard",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,15,67,31,10
+    EDITTEXT        IDC_EDIT1,78,30,186,72,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,34,5,120,14,ES_AUTOHSCROLL
+    LTEXT           "Timer",IDC_STATIC,5,8,20,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 336
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 257
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DIALOG1 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "images.ico"
+
+#endif    // Russian (Russia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Ukrainian (Ukraine) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Ukrainian (Ukraine) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
