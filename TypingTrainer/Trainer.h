@@ -22,6 +22,7 @@ public:
 	void OnTrayIcon(WPARAM, LPARAM);
 	HICON hIcon;
 	PNOTIFYICONDATA pNOT;
+	HANDLE hMutex;
 	HWND hKey[27], hMainEdit, hTimerEdit, hDialog;
 };
 

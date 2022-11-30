@@ -14,6 +14,14 @@ Trainer::~Trainer()
 }
 BOOL Trainer::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 {
+    TCHAR GUID[] = TEXT("{D99CD3E0-670D-4def-9B74-99FD7E793DFB}");
+    hMutex = CreateMutex(NULL, FALSE, GUID);
+    DWORD dwAnswer = WaitForSingleObject(hMutex, 0);
+    if (dwAnswer == WAIT_TIMEOUT)
+    {
+        MessageBox(hwnd, TEXT("Trainer was already launched"), TEXT("Error"), MB_OK | MB_ICONERROR);
+        EndDialog(hwnd, 0);
+    }
     hDialog = hwnd;
     for (int i = 0; i < 27; i++) {
         hKey[i] = GetDlgItem(hwnd, 1000 + i);
