@@ -1,12 +1,15 @@
 #include "Trainer.h"
-
 #define ID_TRAYICON WM_USER
+
+HWND hMainEdit;
+deque<TCHAR> text;
 
 Trainer* Trainer::ptr = NULL;
 Trainer::Trainer()
 {
     ptr = this;
     pNOT = new NOTIFYICONDATA;
+    wifstreamPtr = NULL;
 }
 Trainer::~Trainer()
 {
@@ -14,7 +17,7 @@ Trainer::~Trainer()
 }
 BOOL Trainer::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
 {
-    TCHAR GUID[] = TEXT("{D99CD3E0-670D-4def-9B74-99FD7E793DFB}");
+    TCHAR GUID[] = TEXT("{D99CD3E0-670D-4def-9B74-99FD7E793DFB}");                                       //mutex
     hMutex = CreateMutex(NULL, FALSE, GUID);
     DWORD dwAnswer = WaitForSingleObject(hMutex, 0);
     if (dwAnswer == WAIT_TIMEOUT)
@@ -22,12 +25,18 @@ BOOL Trainer::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
         MessageBox(hwnd, TEXT("Trainer was already launched"), TEXT("Error"), MB_OK | MB_ICONERROR);
         EndDialog(hwnd, 0);
     }
+
+
     hDialog = hwnd;
     for (int i = 0; i < 27; i++) {
         hKey[i] = GetDlgItem(hwnd, 1000 + i);
     }
     hMainEdit = GetDlgItem(hwnd, IDC_EDIT1);
     hTimerEdit = GetDlgItem(hwnd, IDC_EDIT2);
+    hRadioLight = GetDlgItem(hwnd, IDC_LightRadio);
+    hRadioMedium = GetDlgItem(hwnd, IDC_MediumRadio);
+    hRadioHard = GetDlgItem(hwnd, IDC_HardRadio);
+
     HINSTANCE hInst = GetModuleHandle(NULL);
     hIcon = LoadIcon(hInst, MAKEINTRESOURCE(IDI_ICON1));
     SetClassLong(hwnd, /*GCL_HICON*/-14, LONG(hIcon));
@@ -41,12 +50,48 @@ BOOL Trainer::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
     pNOT->uID = ID_TRAYICON;
     lstrcpy(pNOT->szInfo, TEXT("This app helps you to increase speed of typing."));
     lstrcpy(pNOT->szInfoTitle, TEXT("Typing trainer"));
+    SetTimer(hwnd, NULL, 1000, NULL);
     return TRUE;
 }
 
 void Trainer::Cls_OnClose(HWND hwnd)
 {
+    KillTimer(hwnd, 0);
     EndDialog(hwnd, 0);
+}
+
+void Trainer::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtrl, UINT codeNotify)
+{
+    if (id == IDOK) {
+        TCHAR path[50];
+        if (BST_CHECKED == SendMessage(hRadioLight, BM_GETCHECK, NULL, NULL)) {                             ///////////выбор уровня сложности
+            wsprintf(path, TEXT("LightMode.txt"));
+        }  
+        else if (BST_CHECKED == SendMessage(hRadioMedium, BM_GETCHECK, NULL, NULL)) {                       
+            wsprintf(path, TEXT("MediumMode.txt"));
+        }
+        else if (BST_CHECKED == SendMessage(hRadioHard, BM_GETCHECK, NULL, NULL)) {
+            wsprintf(path, TEXT("HardMode.txt"));
+        }
+        else {
+            MessageBox(hwnd, TEXT("Select difficulty level"), TEXT("Warning"), MB_OK | MB_ICONINFORMATION);
+            return;
+        }
+        wifstream OutFile(path, ios::in | ios::_Nocreate);
+        wstring str;
+        while (!OutFile.eof()) {                                                                         //////копирование содержимого файла в очередь(посимвольно)
+            getline(OutFile, str);
+            for (int i = 0; i < str.size(); i++) {
+                text.push_back(str[i]);
+            }
+            text.push_back(' ');
+        }
+                                                   //////тут нужно вывести текст в эдит контрол
+    }
+    if (id == IDCANCEL) {
+        KillTimer(hwnd, 0);
+        EndDialog(hwnd, 0);
+    }
 }
 
 void Trainer::Cls_OnSize(HWND hwnd, UINT state, int cx, int cy)
@@ -74,8 +119,15 @@ BOOL CALLBACK Trainer::DlgProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lP
     {
         HANDLE_MSG(hwnd, WM_CLOSE, ptr->Cls_OnClose);
         HANDLE_MSG(hwnd, WM_INITDIALOG, ptr->Cls_OnInitDialog);
-       // HANDLE_MSG(hwnd, WM_COMMAND, ptr->Cls_OnCommand);
+        HANDLE_MSG(hwnd, WM_COMMAND, ptr->Cls_OnCommand);
         HANDLE_MSG(hwnd, WM_SIZE, ptr->Cls_OnSize);
+        if ((LOWORD(wParam) >= 65 && LOWORD(wParam) <= 90) || (LOWORD(wParam) >= 97 && LOWORD(wParam) <= 122) || LOWORD(wParam) == 32) {//проверка кода нажатой клавиши(диапазон латиницы и пробел)
+            if (LOWORD(wParam) == int(*text.begin())) {
+                text.pop_front();
+                //////////////////////////тут должна быть перезапись текста в эдит контрол
+            }
+            else Beep(900, 200);//900 Hertz, 200ms
+        }
     }
     
     if (message == WM_APP)

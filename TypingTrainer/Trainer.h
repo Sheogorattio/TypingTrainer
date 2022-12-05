@@ -3,10 +3,15 @@
 #include<windowsX.h>
 #include<WinUser.h>
 #include<tchar.h>
+#include<fstream>
+#include<deque>
+#include<string>
 //#include<commctrl.h>
 #include"resource.h"
 
 //#pragma comment(lib, "commctrl32")
+using namespace std;
+
 
 class Trainer
 {
@@ -23,6 +28,9 @@ public:
 	HICON hIcon;
 	PNOTIFYICONDATA pNOT;
 	HANDLE hMutex;
-	HWND hKey[27], hMainEdit, hTimerEdit, hDialog;
+	HWND hKey[27], hTimerEdit, hDialog, hRadioLight, hRadioMedium, hRadioHard;
+	INT Errors = 0, RightAnsw = 0;
+	wifstream* wifstreamPtr;
+	//TCHAR* buff;//буфер для текста с файла.	будет копироваться в deque
 };
 

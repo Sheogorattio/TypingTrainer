@@ -31,9 +31,9 @@
 #define IDC_X_BUTTON                    1024
 #define IDC_Y_BUTTON                    1025
 #define IDC_Z_BUTTON                    1026
-#define IDC_RADIO1                      1027
-#define IDC_RADIO2                      1028
-#define IDC_RADIO3                      1029
+#define IDC_LightRadio                  1027
+#define IDC_MediumRadio                 1028
+#define IDC_HardRadio                   1029
 #define IDC_EDIT1                       1030
 #define IDC_EDIT2                       1031
 
