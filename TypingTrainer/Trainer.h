@@ -19,7 +19,7 @@ public:
 	Trainer();
 	~Trainer();
 	static Trainer* ptr;
-	static BOOL CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
+	static LRESULT CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
 	BOOL Cls_OnInitDialog(HWND, HWND, LPARAM);
 	void Cls_OnClose(HWND);
 	void Cls_OnCommand(HWND, int, HWND, UINT);
@@ -28,8 +28,8 @@ public:
 	HICON hIcon;
 	PNOTIFYICONDATA pNOT;
 	HANDLE hMutex;
-	HWND hKey[27], hTimerEdit, hDialog, hRadioLight, hRadioMedium, hRadioHard;
-	INT Errors = 0, RightAnsw = 0;
+	HWND  hDialog;
+	
 	wifstream* wifstreamPtr;
 	//TCHAR* buff;//буфер для текста с файла.	будет копироваться в deque
 };
